@@ -6,7 +6,6 @@
 
 <br>
 
-# 使用说明
 
 ## 部署服务：
 
@@ -15,7 +14,7 @@
 1. 在 `settings/setting.py` 文件中, 确认 `mysql` 对应的信息（用户名，密码，IP地址，端口）是否正确
 2. `python3` 的环境
 
-
+<br>
 
 ## 运行服务：
 
@@ -39,7 +38,7 @@
    sh run.sh status
    ```
 
-
+<br>
 
 ## url 路由：
 
@@ -48,7 +47,9 @@
    http://ip:9000/illegal/stats
    ```
 
-
+<br>
 
 
 ##### 完
+
+<br>
