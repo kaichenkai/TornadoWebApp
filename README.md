@@ -19,7 +19,7 @@
 
 ## 运行服务：
 
-##### 在 `TornadoWeb` 目录下进行
+##### 在 `TornadoWebApp` 目录下进行
 
 ##### 开启服务：
    ```shell
