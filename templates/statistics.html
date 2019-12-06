@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- viewport视口：网页可以根据设置的宽度自动进行适配，在浏览器的内部虚拟一个容器，容器的宽度与设备的宽度相同。
+    width: 默认宽度与设备的宽度相同
+    initial-scale: 初始的缩放比，为1:1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>接入&发布统计信息</title>
+    <!-- Bootstrap -->
+    <link href="{{static_url('css/bootstrap.min.css')}}" rel="stylesheet">
+    <script src="{{static_url('js/jquery-2.1.0.min.js')}}"></script>
+    <script src="{{static_url('js/bootstrap.min.js')}}"></script>
+    <style type="text/css">
+        th, td {
+            text-align: center;
+            height: 50px;
+            vertical-align:middle;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 style="text-align: center">接入 & 发布统计信息</h2>
+    <br>
+    <br>
+
+    <div style="float: left;">
+        <form class="form-inline" action="/illegal/stats" method="get">
+            <div class="form-group">
+                <label for="exampleInputName1">日期</label>
+                <input type="text" name="date" value="{{ date }}" class="form-control" id="exampleInputName1" placeholder="yyyy-mm-dd" >
+            </div>
+            <button type="submit" class="btn btn-default" style="margin: 5px;">查询</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table border="1" class="table table-bordered table-hover">
+        <div>
+            <a class="btn btn-primary" href="/illegal/stats?" style="float: left; margin: 3px;">接入</a>
+            <a class="btn btn-primary" href="/illegal/stats?" style="position: relative; left: 872px; margin: 3px">发布</a>
+        </div>
+
+        <tr class="access">
+            <th style="background: #f8efc0; vertical-align:middle">日期</th>
+            <th style="background: #4cae4c; vertical-align:middle">违法接收</th>
+            <th style="background: #4cae4c; vertical-align:middle">入库成功</th>
+            <th style="vertical-align: middle">读取成功</th>
+            <th style="background: #d9534f; vertical-align:middle">读取失败</th>
+            <th style="vertical-align: middle">下载成功</th>
+            <th style="background: #d9534f; vertical-align:middle">下载失败</th>
+            <th style="vertical-align: middle">写入成功</th>
+            <th style="background: #d9534f; vertical-align:middle">写入失败</th>
+            <th style="background: #4cae4c; vertical-align:middle">审核接收</th>
+            <th style="background: #4cae4c; vertical-align:middle">发布成功</th>
+        </tr>
+
+
+        {% if len(stats_list) > 0 %}
+            {% for stats in stats_list %}
+                <tr>
+                <td style="vertical-align: middle">{{ stats["date"] }}</td>
+                <td style="vertical-align: middle">{{ stats["access_received_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["access_inserted_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["read_success_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["read_false_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["download_success_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["download_false_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["write_success_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["write_false_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["publish_received_total"] }}</td>
+                <td style="vertical-align: middle">{{ stats["publish_send_total"] }}</td>
+                </tr>
+            {% end %}
+        {% else %}
+            <tr>
+                <td colspan="11" style="vertical-align: middle">暂没有对接统计信息</td>
+            </tr>
+        {% end %}
+
+        </table>
+
+<!--    查询的时候不显示分页内容-->
+    {% if total_count is not None or total_page is not None %}
+        <div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if current_page == 1 %}
+                        <li class="disabled">
+                    {% end %}
+
+                    {% if current_page != 1 %}
+                        <li>
+                    {% end %}
+                            <a href="/illegal/stats?current_page={{current_page - 1}}" aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                        </li>
+
+                    {% for page in range(1, total_page + 1) %}
+                        {% if current_page == page %}
+                            <li class="active"><a href="/illegal/stats?current_page={{ page }}">{{ page }}</a></li>
+
+                        {% end %}
+                        {% if current_page != page %}
+                            <li><a href="/illegal/stats?current_page={{ page }}">{{ page }}</a></li>
+
+                        {% end %}
+
+                    {% end %}
+
+                    {% if current_page == total_page or current_page == 1 %}
+                        <li class="disabled">
+                    {% end %}
+
+                    {% if current_page != total_page and current_page != 1 %}
+                        <li>
+                    {% end %}
+                        <a href="/illegal/stats?current_page={{current_page + 1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <span style="font-size: 25px;margin-left: 5px;">
+                            共{{ total_count }}条记录，共{{ total_page }}页
+                    </span>
+                </ul>
+            </nav>
+        </div>
+    {% end %}
+
+</div>
+</body>
+</html>
