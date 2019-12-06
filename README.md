@@ -1,5 +1,5 @@
 # TornadoWebApp
-基于 tornado web 框架 + bootstrap 构建的 web 应用
+基于 tornado 框架 + bootstrap 构建的 web 应用
  - 将mysql里边存储的统计信息进行展示
  - 能够对统计信息分页展示, 查询操作
 
