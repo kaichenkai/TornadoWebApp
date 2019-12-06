@@ -1,15 +1,25 @@
+# TornadoWebApp
+基于 tornado 框架 + bootstrap 构建的 web 应用
+ - 将mysql里边存储的统计信息进行展示
+ - 能够对统计信息分页展示, 查询操作
+
+原文地址: https://www.cnblogs.com/kaichenkai/p/11999880.html
+
+<br>
+
+
 ## 部署服务：
 
 ##### 接入违法数据，则按以下步骤进行:
 
-1. 在 `settings/setting.py` 文件中, 确认 `mysql` 对应的信息（用户名，密码，IP地址，端口）是否正确
-3. 确认是否有 `python3` 的环境，如果没有，需要另外安装。
+1. `python3` 的环境
+2. 在 `settings/setting.py` 文件中, 确认 `mysql` 对应的信息（用户名，密码，IP地址，端口）是否正确
 
-
+<br>
 
 ## 运行服务：
 
-##### 在 `TornadoWeb` 目录下进行
+##### 在 `TornadoWebApp` 目录下进行
 
 ##### 开启服务：
    ```shell
@@ -29,7 +39,7 @@
    sh run.sh status
    ```
 
-
+<br>
 
 ## url 路由：
 
@@ -38,7 +48,9 @@
    http://ip:9000/illegal/stats
    ```
 
-
+<br>
 
 
 ##### 完
+
+<br>
