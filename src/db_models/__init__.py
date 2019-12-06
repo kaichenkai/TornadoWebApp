@@ -1,6 +1,6 @@
 # coding: utf-8
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import (sessionmaker)
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from settings.setting import MYSQL_SERVER, MYSQL_DRIVER, MYSQL_USERNAME, MYSQL_PASSWORD, DB_NAME, DB_CHARSET
 

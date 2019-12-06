@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <!-- 指定字符集 -->
     <meta charset="utf-8">
-    <!-- 使用Edge最新的浏览器的渲染方式 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- viewport视口：网页可以根据设置的宽度自动进行适配，在浏览器的内部虚拟一个容器，容器的宽度与设备的宽度相同。
     width: 默认宽度与设备的宽度相同
     initial-scale: 初始的缩放比，为1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>接入&发布统计信息</title>
-    <!-- 1. 导入CSS的全局样式 -->
+    <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
     <script src="js/jquery-2.1.0.min.js"></script>
-    <!-- 3. 导入bootstrap的js文件 -->
     <script src="js/bootstrap.min.js"></script>
     <style type="text/css">
-        td, th {
+        th, td {
             text-align: center;
+            height: 50px;
+            vertical-align:middle;
         }
     </style>
 </head>
@@ -30,10 +27,10 @@
     <br>
 
     <div style="float: left;">
-        <form class="form-inline" action="${pageContext.request.contextPath}/findStudentByPageServlet" method="post">
+        <form class="form-inline" action="/illegal/stats" method="get">
             <div class="form-group">
                 <label for="exampleInputName1">日期</label>
-                <input type="text" name="name" value="" class="form-control" id="exampleInputName1" placeholder="格式: xxxx-xx-xx" >
+                <input type="text" name="date" value="" class="form-control" id="exampleInputName1" placeholder="yyyy-mm-dd" >
             </div>
             <button type="submit" class="btn btn-default" style="margin: 5px;">查询</button>
         </form>
@@ -45,89 +42,72 @@
     <br>
     <br>
     <table border="1" class="table table-bordered table-hover">
-        <div style="float: top;margin: 2px;">
-        <a class="btn btn-primary" href="">接入</a>
+        <div>
+            <a class="btn btn-primary" href="/illegal/stats?" style="float: left; margin: 3px;">接入</a>
+            <a class="btn btn-primary" href="/illegal/stats?" style="position: relative; left: 866px; margin: 3px">发布</a>
         </div>
-        <tr class="success">
-            <th style="background: #f8efc0">日期</th>
-            <th style="background: #4cae4c">违法接收</th>
-            <th style="background: #4cae4c">入库成功</th>
-            <th>读取成功</th>
-            <th style="background: #d9534f">读取失败</th>
-            <th>下载成功</th>
-            <th style="background: #d9534f">下载失败</th>
-            <th>写入成功</th>
-            <th style="background: #d9534f">写入失败</th>
+
+        <tr class="access">
+            <th style="background: #f8efc0; vertical-align:middle">日期</th>
+            <th style="background: #4cae4c; vertical-align:middle">违法接收</th>
+            <th style="background: #4cae4c; vertical-align:middle">入库成功</th>
+            <th style="vertical-align: middle">读取成功</th>
+            <th style="background: #d9534f; vertical-align:middle">读取失败</th>
+            <th style="vertical-align: middle">下载成功</th>
+            <th style="background: #d9534f; vertical-align:middle">下载失败</th>
+            <th style="vertical-align: middle">写入成功</th>
+            <th style="background: #d9534f; vertical-align:middle">写入失败</th>
+            <th style="background: #4cae4c; vertical-align:middle">审核接收</th>
+            <th style="background: #4cae4c; vertical-align:middle">发布成功</th>
         </tr>
+
         <tr>
-            <td>2019-12-03</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
+        <td style="vertical-align: middle">100</td>
         </tr>
-    </table>
-    <br>
-    <br>
-    <br>
-    <div style="float: top;margin: 2px;">
-        <a class="btn btn-primary" href="">发布</a>
+
+        <tr>
+            <td colspan="11" style="vertical-align: middle">暂没有对接统计信息</td>
+        </tr>
+
+
+        </table>
+
+<!--    查询的时候不显示分页内容-->
+
+        <div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="disabled">
+                        <!--<li>-->
+                            <a href="/illegal/stats?current_page={{current_page - 1}}" aria-label="Previous">
+                                <span aria-hidden="false">&laquo;</span>
+                            </a>
+                        </li>
+
+                            <li class="active"><a href="/illegal/stats?current_page={{ page }}">1</a></li>
+                            <li><a href="/illegal/stats?current_page={{ page }}">2</a></li>
+                        <li class="disabled">
+                        <!--<li>-->
+                        <a href="/illegal/stats?current_page={{current_page + 1}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <span style="font-size: 25px;margin-left: 5px;">
+                            共6条记录，共2页
+                    </span>
+                </ul>
+            </nav>
         </div>
-    <table border="1" class="table table-bordered table-hover" style="width: 600px;">
-
-        <tr class="success">
-            <th style="background: #f8efc0">日期</th>
-            <th style="background: #4cae4c;">接收</th>
-            <th style="background: #4cae4c">发布成功</th>
-        </tr>
-        <tr>
-            <td>2019-12-03</td>
-            <td>100</td>
-            <td>100</td>
-        </tr>
-    </table>
-
-<!--     <div>-->
-<!--        <nav aria-label="Page navigation">-->
-<!--            <ul class="pagination">-->
-<!--                <c:if test="${pb.currentPage == 1}">-->
-<!--                    <li class="disabled">-->
-<!--                </c:if>-->
-
-<!--                <c:if test="${pb.currentPage != 1}">-->
-
-<!--                    <li>-->
-<!--                </c:if>-->
-<!--                    <a href="${pageContext.request.contextPath}/findStudentByPageServlet?currentPage=${pb.currentPage - 1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Previous">-->
-<!--                        <span aria-hidden="true">&laquo;</span>-->
-<!--                    </a>-->
-
-
-<!--                </li>-->
-<!--                <c:forEach begin="1" end="${pb.totalPage}" var="i" >-->
-<!--                    <c:if test="${pb.currentPage == i}">-->
-<!--                        <li class="active"><a href="${pageContext.request.contextPath}/findStudentByPageServlet?currentPage=${i}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}">${i}</a></li>-->
-<!--                    </c:if>-->
-<!--                    <c:if test="${pb.currentPage != i}">-->
-<!--                        <li><a href="${pageContext.request.contextPath}/findStudentByPageServlet?currentPage=${i}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}">${i}</a></li>-->
-<!--                    </c:if>-->
-<!--                </c:forEach>-->
-
-<!--                <li>-->
-<!--                    <a href="${pageContext.request.contextPath}/findStudentByPageServlet?currentPage=${pb.currentPage + 1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Next">-->
-<!--                        <span aria-hidden="true">&raquo;</span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <span style="font-size: 25px;margin-left: 5px;">-->
-<!--                    共xxx条记录，共xxx页-->
-<!--                </span>-->
-<!--            </ul>-->
-<!--        </nav>-->
-<!--    </div>-->
 
 
 </div>
