@@ -3,6 +3,7 @@
  - 将mysql里边存储的统计信息进行展示
  - 能够对统计信息分页展示, 查询操作
 
+原文地址: https://www.cnblogs.com/kaichenkai/p/11999880.html
 
 <br>
 
