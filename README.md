@@ -11,8 +11,8 @@
 
 ##### 接入违法数据，则按以下步骤进行:
 
-1. 在 `settings/setting.py` 文件中, 确认 `mysql` 对应的信息（用户名，密码，IP地址，端口）是否正确
-2. `python3` 的环境
+1. `python3` 的环境
+2. 在 `settings/setting.py` 文件中, 确认 `mysql` 对应的信息（用户名，密码，IP地址，端口）是否正确
 
 <br>
 
